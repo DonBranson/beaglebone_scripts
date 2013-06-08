@@ -5,7 +5,6 @@
 echo 30 > /sys/class/gpio/export
 echo in > /sys/class/gpio/gpio30/direction
 
-# 1=switch open; 0=switch closed
 while [ 1 ] ; do 
 	SWITCH=`cat /sys/class/gpio/gpio30/value`
 	if [ $SWITCH -eq 1 ] ; then
