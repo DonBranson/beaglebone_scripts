@@ -6,5 +6,12 @@ echo 30 > /sys/class/gpio/export
 echo in > /sys/class/gpio/gpio30/direction
 
 # 1=switch open; 0=switch closed
-while [ 1 ] ; do cat /sys/class/gpio/gpio30/value ; sleep .5 ; done
-
+while [ 1 ] ; do 
+	SWITCH=`cat /sys/class/gpio/gpio30/value`
+	if [ $SWITCH -eq 1 ] ; then
+		echo "Freezer open"
+	else
+		echo "Freezer closed"
+	fi
+	sleep 1
+done
