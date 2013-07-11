@@ -13,13 +13,13 @@ function printData(x) {
 
 b.pinMode("P9_11", b.OUTPUT, 7, 'pullup', 'slow');
 b.pinMode("P9_13", b.OUTPUT, 7, 'pullup', 'slow');
-b.pinMode("P9_15", b.OUTPUT, 7, 'pullup', 'slow');
-b.pinMode("P9_17", b.OUTPUT, 7, 'pullup', 'slow');
+b.pinMode("P9_19", b.OUTPUT, 7, 'pullup', 'slow');
+b.pinMode("P9_25", b.OUTPUT, 7, 'pullup', 'slow');
 
 b.getPinMode("P9_11", printPinMux);
 b.getPinMode("P9_13", printPinMux);
-b.getPinMode("P9_15", printPinMux);
-b.getPinMode("P9_17", printPinMux);
+b.getPinMode("P9_19", printPinMux);
+b.getPinMode("P9_25", printPinMux);
 
 function printPinMux(x) {
     console.log('mux = ' + x.mux);
