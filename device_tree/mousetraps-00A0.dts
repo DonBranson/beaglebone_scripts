@@ -1,0 +1,42 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,beaglebone-black";
+	part-number = "mousetraps";
+	version = "00A0";
+
+	exclusive-use =
+		"P9.11",
+		"P9.13",
+		"P9.15",
+		"P9.17",
+		"gpio0_30", "gpio0_31", "gpio1_16", "gpio0_05";
+
+	/* https://github.com/derekmolloy/boneDeviceTree/blob/master/docs/BeagleboneBlackP9HeaderTable.pdf */
+	fragment@0 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			mousetrap_pins: pinmux_mousetrap_pins {
+				pinctrl-single,pins = <
+					0x070 0x6f /* P9_11 30 slow INPUT MODE7 none */
+					0x074 0x6f /* P9_13 31 slow INPUT MODE7 none */
+					0x040 0x6f /* P9_15 48 slow INPUT MODE7 none */
+					0x15c 0x6f /* P9_17 05 slow INPUT MODE7 none */
+				>;
+			};
+		};	
+	};
+
+	fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			test_helper: helper {
+				compatible = "bone-pinmux-helper";
+				pinctrl-names = "default";
+				pinctrl-0 = <&mousetrap_pins>;
+				status = "okay";
+			};
+		};
+	};
+};

@@ -1,0 +1,167 @@
+http://changetheworldwithyourpassion.blogspot.com/2009/08/how-to-share-network-with-beagleboard.html
+http://solutionsandtips.blogspot.com/2009/05/uuid-fstab-and-automatically-mount-usb.html
+
+
+http://omappedia.org/wiki/Device_Tree
+http://lwn.net/Articles/463335/
+http://lkml.indiana.edu/hypermail/linux/kernel/1203.1/00919.html
+http://www.mjmwired.net/kernel/Documentation/pinctrl.txt
+
+http://hipstercircuits.com/enable-serialuarttty-on-beaglebone-black/
+http://elinux.org/BeagleBone_Black_Capes
+
+cat /sys/kernel/debug/pinctrl/44e10800.pinmux/pinmux-pins
+
+
+https://github.com/pantoniou/linux-beagle-track-mainline/blob/merge-20130705/arch/arm/boot/dts/am335x-boneblack.dts
+http://www.armhf.com/index.php/using-beaglebone-black-gpios/
+
+http://elinux.org/Device_Trees
+
+vi /boot/uEnv.txt
+
+# Working with the DTS
+http://www.element14.com/community/community/knode/single-board_computers/next-gen_beaglebone/blog/2013/05/22/bbb--working-with-the-pru-icssprussv2
+
+dtc -I dtb /boot/am335x-boneblack.dtb -o am335x-boneblack.dts
+dtc -I dts -O dtb am335x-boneblack.dts -o am335x-boneblack.dtb 
+https://groups.google.com/forum/#!msg/beagleboard/Vhx6CgfR2cY/S_9xnxKGpvkJ
+cat /sys/devices/bone_capemgr.9/slots
+cat /sys/kernel/debug/pinctrl/44e10800.pinmux/pins
+cat /sys/kernel/debug/gpio
+
+GPIOs 0-31, gpio:
+
+GPIOs 32-63, gpio:
+ gpio-48  (sysfs               ) out lo
+ gpio-52  (eMMC_RSTn           ) out lo
+ gpio-53  (beaglebone:green:usr) out lo
+ gpio-54  (beaglebone:green:usr) out lo
+ gpio-55  (beaglebone:green:usr) out hi
+ gpio-56  (beaglebone:green:usr) out lo
+ gpio-59  (McASP Clock Enable P) out hi
+
+GPIOs 64-95, gpio:
+
+GPIOs 96-127, gpio:
+
+# pin 9:11, gpio0[30] -> 00 + 30 = 30
+# pin 9:13, gpio0[31] -> 00 + 31 = 31
+# pin 9:19, gpio0[13] -> 00 + 13 = 13
+# pin 9:25, gpio3[21] -> 96 + 21 = 117
+
+http://www.element14.com/community/community/knode/single-board_computers/next-gen_beaglebone/blog/2013/05/22/bbb--working-with-the-pru-icssprussv2
+pin 30 (44e10878): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 31 (44e1087c): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 13 (44e10834): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 117 (44e109d4): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+
+
+http://hipstercircuits.com/category/device-tree/
+ls /lib/firmware
+cat /sys/kernel/debug/pinctrl/44e10800.pinmux/pingroups
+
+http://hipstercircuits.com/beaglebone-black-gpio-mux-for-pru-with-device-tree-overlay/
+
+dtc -I dts -O dtb -@ mousestraps.dts -o mousestraps.dtbo
+
+
+ll /sys/devices/bone_capemgr.9/slots
+-rw-r--r-- 1 root root 4096 Jul 14 07:29 /sys/devices/bone_capemgr.9/slots
+
+echo BBB-mousetrap:00A0 >/sys/devices/bone_capemgr.9/slots
+-bash: echo: write error: No such file or directory
+
+
+http://www.youtube.com/watch?v=wui_wU1AeQc
+http://derekmolloy.ie/beaglebone/beaglebone-gpio-programming-on-arm-embedded-linux/
+
+----------------------------------------------------
+
+cat /sys/kernel/debug/pinctrl/44e10800.pinmux/pingroups
+registered pin groups:
+group: pinmux_userled_pins
+pin 21 (44e10854)
+pin 22 (44e10858)
+pin 23 (44e1085c)
+pin 24 (44e10860)
+
+group: pinmux_rstctl_pins
+pin 20 (44e10850)
+
+group: pinmux_i2c0_pins
+pin 98 (44e10988)
+pin 99 (44e1098c)
+
+group: pinmux_i2c2_pins
+pin 94 (44e10978)
+pin 95 (44e1097c)
+
+group: pinmux_emmc2_pins
+pin 32 (44e10880)
+pin 33 (44e10884)
+pin 0 (44e10800)
+pin 1 (44e10804)
+pin 2 (44e10808)
+pin 3 (44e1080c)
+pin 4 (44e10810)
+pin 5 (44e10814)
+pin 6 (44e10818)
+pin 7 (44e1081c)
+
+group: pinmux_userled_pins
+pin 21 (44e10854)
+pin 22 (44e10858)
+pin 23 (44e1085c)
+pin 24 (44e10860)
+
+group: mcasp0_pins
+pin 107 (44e109ac)
+pin 103 (44e1099c)
+pin 101 (44e10994)
+pin 100 (44e10990)
+pin 106 (44e109a8)
+
+group: nxp_hdmi_bonelt_pins
+pin 108 (44e109b0)
+pin 40 (44e108a0)
+pin 41 (44e108a4)
+pin 42 (44e108a8)
+pin 43 (44e108ac)
+pin 44 (44e108b0)
+pin 45 (44e108b4)
+pin 46 (44e108b8)
+pin 47 (44e108bc)
+pin 48 (44e108c0)
+pin 49 (44e108c4)
+pin 50 (44e108c8)
+pin 51 (44e108cc)
+pin 52 (44e108d0)
+pin 53 (44e108d4)
+pin 54 (44e108d8)
+pin 55 (44e108dc)
+pin 56 (44e108e0)
+pin 57 (44e108e4)
+pin 58 (44e108e8)
+pin 59 (44e108ec)
+
+group: nxp_hdmi_bonelt_off_pins
+pin 108 (44e109b0)
+
+echo mousetraps:00A0 >/sys/devices/bone_capemgr.8/driver/bone_capemgr.8/slots ; dmesg | grep bone
+[ 2416.359277] bone-capemgr bone_capemgr.8: part_number 'mousetraps', version '00A0'
+[ 2416.363040] bone-capemgr bone_capemgr.8: slot #7: generic override
+[ 2416.363108] bone-capemgr bone_capemgr.8: bone: Using override eeprom data at slot 7
+[ 2416.363162] bone-capemgr bone_capemgr.8: slot #7: 'Override Board Name,00A0,Override Manuf,mousetraps'
+[ 2416.365675] bone-capemgr bone_capemgr.8: slot #7: Requesting part number/version based 'mousetraps-00A0.dtbo
+[ 2416.365744] bone-capemgr bone_capemgr.8: slot #7: Requesting firmware 'mousetraps-00A0.dtbo' for board-name 'Override Board Name', version '00A0'
+[ 2416.366367] bone-capemgr bone_capemgr.8: slot #7: dtbo 'mousetraps-00A0.dtbo' loaded; converting to live tree
+[ 2416.370103] bone-capemgr bone_capemgr.8: slot #7: #1 overlays
+[ 2416.370505] bone-capemgr bone_capemgr.8: slot #7: Applied #1 overlays.
+
+dtc -O dtb -o /lib/firmware/mousetraps-00A0.dtbo -b 0 -@ mousetraps-00A0.dts
+
+cat $PINS | egrep "(870|874|840|95c)"
+
+export SLOTS=/sys/devices/bone_capemgr.8/slots
+export PINS=/sys/kernel/debug/pinctrl/44e10800.pinmux/pins
