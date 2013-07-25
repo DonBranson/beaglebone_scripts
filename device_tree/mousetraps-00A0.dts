@@ -33,24 +33,43 @@
 		target = <&ocp>;
 		__overlay__ {
 			gpio_keys {
+				compatible = "gpio-keys";
+				pinctrl-names = "default";
+				pinctrl-0 = <&mousetrap_pins>;
+
 				switch_x1 {
-					label = "End-stop-X1";
+					label = "Switch 1";
 					debounce_interval = <50>;
 					linux,code = <1>;
-					gpios = <&gpio3 2 0x5>; /* gpio2+1, pin 2 */
+					gpios = <&gpio1 30 0x5>; /* gpio0+1, pin 30, input/pullup */
+					gpio-key,wakeup;
+				};              
+
+				switch_x2 {
+					label = "Switch 2";
+					debounce_interval = <50>;
+					linux,code = <1>;
+					gpios = <&gpio1 31 0x5>; /* gpio0+1, pin 31, input/pullup */
+					gpio-key,wakeup;
+				};              
+
+				switch_x3 {
+					label = "Switch 3";
+					debounce_interval = <50>;
+					linux,code = <1>;
+					gpios = <&gpio2 16 0x5>; /* gpio1+1, pin 2, input/pullup */
+					gpio-key,wakeup;
+				};              
+
+				switch_x4 {
+					label = "Switch 4";
+					debounce_interval = <50>;
+					linux,code = <1>;
+					gpios = <&gpio1 5 0x5>; /* gpio0+1, pin 2, input/pullup */
 					gpio-key,wakeup;
 				};              
 			};
 
-
-
-
-			test_helper: helper {
-				compatible = "gpio-keys";
-				pinctrl-names = "default";
-				pinctrl-0 = <&mousetrap_pins>;
-				status = "okay";
-			};
 		};
 	};
 };
