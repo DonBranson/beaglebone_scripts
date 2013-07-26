@@ -165,3 +165,16 @@ cat $PINS | egrep "(870|874|840|95c)"
 
 export SLOTS=/sys/devices/bone_capemgr.8/slots
 export PINS=/sys/kernel/debug/pinctrl/44e10800.pinmux/pins
+
+from https://groups.google.com/forum/#!msg/beagleboard/jYpYHZPl1ig/90BPMxxhWLMJ
+
+> optargs=capemgr.extra_override=BB-NTPD-00A0
+
+optargs=capemgr.extra_override=BB-NTPD:00A0
+Note the ':'
+
+Since this is revision 00A0 you can omit the :00A0 part.
+
+i.e. capemgr.extra_override=BB-NTPD
+
+It will try to load the /lib/firmware/BB-NTPD-00A0.dtbo file 
